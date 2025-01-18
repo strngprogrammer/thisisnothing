@@ -470,11 +470,11 @@ class Report:
                 else:
                     self.error += 1
 
-        print(
+            print(
             f"{Fore.YELLOW}Done {Fore.RED}: {Fore.LIGHTGREEN_EX}{self.done} {Fore.WHITE}, {Fore.YELLOW}Error {Fore.RED}: {Fore.LIGHTRED_EX}{self.error}"
         )
 
-        time.sleep(self.sleep)
+            time.sleep(self.sleep)
 
 
 if __name__ == "__main__":
