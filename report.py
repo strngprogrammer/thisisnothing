@@ -167,6 +167,100 @@ class Report:
 
     def start_reporting(self):
 
+        headers = {
+            "Host": "i.instagram.com",
+            "X-Ig-App-Locale": "en_US",
+            "X-Ig-Device-Locale": "en_US",
+            "X-Ig-Mapped-Locale": "en_US",
+            "X-Pigeon-Session-Id": "UFS-e8d47000-42f0-4c1b-a9ab-ba5fdef518f2-0",
+            "X-Pigeon-Rawclienttime": "1729865539.235",
+            "X-Ig-Bandwidth-Speed-Kbps": "4452.000",
+            "X-Ig-Bandwidth-Totalbytes-B": "0",
+            "X-Ig-Bandwidth-Totaltime-Ms": "0",
+            "X-Bloks-Version-Id": "9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a",
+            "X-Ig-Www-Claim": "hmac.AR2uvV0qGCpiKiu3IdWQ2mfoGO3oFZBvVb7xqDhdIKBFe2DA",
+            "X-Bloks-Is-Prism-Enabled": "false",
+            "X-Bloks-Is-Layout-Rtl": "false",
+            "X-Ig-Device-Id": "0133c304-8663-46b5-9665-6f56dfce3ac8",
+            "X-Ig-Family-Device-Id": "bf1149fb-8cd4-49c1-bec6-cdb2c3d22203",
+            "X-Ig-Android-Id": "android-9fa31f7eb19661f4",
+            "X-Ig-Timezone-Offset": "0",
+            "X-Ig-Nav-Chain": "MainFeedFragment:feed_timeline:1:cold_start:1729865480.547:10#230#301:3484658381916606965,UserDetailFragment:profile:2:media_owner:1729865521.381::,ProfileMediaTabFragment:profile:3:button:1729865523.141::,StartFRXReportV2BottomSheetFragment:profile:4:button:1729865539.235::",
+            "X-Ig-Connection-Type": "WIFI",
+            "X-Ig-Capabilities": "3brTv10=",
+            "X-Ig-App-Id": "567067343352427",
+            "Priority": "u=3",
+            "User-Agent": "Instagram 309.1.0.41.113 Android (30/11; 420dpi; 1080x1794; Google/google; sdk_gphone_x86; generic_x86_arm; ranchu; en_US; 436384447)",
+            "Accept-Language": "en-US",
+            "Authorization": self.cookie,
+            "X-Mid": "Zl8PKgABAAGDZNC7T7f0K5n7gwZTu",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        }
+        data = {
+            "logging_extra": '{"shopping_session_id":"18ca69a0-d039-4416-8a82-b62350a6e0f2","nua_action":"","profile_media_attribution":"3483959782667255462_'
+            + self.target
+            + '","navigation_chain":"MainFeedFragment:feed_timeline:1:cold_start:1729933988.593:10#230#301:3483959782667255462,UserDetailFragment:profile:9:media_owner:1729934048.8::,ProfileMediaTabFragment:profile:10:button:1729934049.437::"}',
+            "trigger_event_type": "ig_report_button_clicked",
+            "trigger_session_id": "0819fb27-1ded-4d20-8839-f91965367970",
+            "ig_container_module": "profile",
+            "entry_point": "chevron_button",
+            "preloading_enabled": "1",
+            "_uuid": "0133c304-8663-46b5-9665-6f56dfce3ac8",
+            "ig_object_value": self.target,
+            "ig_object_type": "5",
+            "bk_client_context": '{"bloks_version":"9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a","styles_id":"instagram"}',
+            "ixt_initial_screen_id": "742fa56e-d32a-457b-9632-d271fa10f633",
+            "bloks_versioning_id": "9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a",
+            "location": "ig_profile",
+            "is_e2ee": "0",
+        }
+        req = requests.post(
+            "https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.ig.ixt.triggers.bottom_sheet.ig_content/",
+            headers=headers,
+            data=data,
+        )
+        reqjs = str(req.json())
+        context = re.search(
+            r", \(bk.action.array.Make, true, false, \"tag_selection_screen\", \"(.*?)\"\)\), \(bk.action.mins.CallRuntime,",
+            reqjs,
+        ).group(1)
+        data2 = {
+            "params": '{"client_input_params":{"tags":["ig_report_account"]},"server_params":{"show_tag_search":0,"INTERNAL__latency_qpl_marker_id":36707139,"INTERNAL__latency_qpl_instance_id":2.0602257450003E14,"serialized_state":"'
+            + context
+            + '","is_bloks":1,"tag_source":"tag_selection_screen"}}',
+            "_uuid": "0133c304-8663-46b5-9665-6f56dfce3ac8",
+            "bk_client_context": '{"bloks_version":"9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a","styles_id":"instagram"}',
+            "bloks_versioning_id": "9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a",
+        }
+        req = requests.post(
+            "https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.instagram_bloks_bottom_sheet.ixt.screen.frx_tag_selection_screen/",
+            headers=headers,
+            data=data2,
+        )
+        reqjs = str(req.json())
+        context = re.search(
+            r", \(bk.action.array.Make, true, false, \"tag_selection_screen\", \"(.*?)\"\)\), ",
+            reqjs,
+        ).group(1)
+        data2 = {
+            "params": '{"client_input_params":{"tags":["ig_its_inappropriate","ig_report_account"]},"server_params":{"show_tag_search":0,"INTERNAL__latency_qpl_marker_id":36707139,"INTERNAL__latency_qpl_instance_id":2.06131700800027E14,"serialized_state":"'
+            + context
+            + '","is_bloks":1,"tag_source":"tag_selection_screen"}}',
+            "_uuid": "0133c304-8663-46b5-9665-6f56dfce3ac8",
+            "bk_client_context": '{"bloks_version":"9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a","styles_id":"instagram"}',
+            "bloks_versioning_id": "9fc6a7a4a577456e492c189810755fe22a6300efc23e4532268bca150fe3e27a",
+        }
+        req = requests.post(
+            "https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.instagram_bloks_bottom_sheet.ixt.screen.frx_tag_selection_screen/",
+            headers=headers,
+            data=data,
+        )
+        reqjs = str(req.json())
+        context = re.search(
+            r", \(bk.action.array.Make, true, false, \"tag_selection_screen\", \"(.*?)\"\)\), ",
+            reqjs,
+        ).group(1)
+
         while True:
 
             if self.report_type == 1:
@@ -471,8 +565,8 @@ class Report:
                     self.error += 1
 
             print(
-            f"{Fore.YELLOW}Done {Fore.RED}: {Fore.LIGHTGREEN_EX}{self.done} {Fore.WHITE}, {Fore.YELLOW}Error {Fore.RED}: {Fore.LIGHTRED_EX}{self.error}"
-        )
+                f"{Fore.YELLOW}Done {Fore.RED}: {Fore.LIGHTGREEN_EX}{self.done} {Fore.WHITE}, {Fore.YELLOW}Error {Fore.RED}: {Fore.LIGHTRED_EX}{self.error}"
+            )
 
             time.sleep(self.sleep)
 
