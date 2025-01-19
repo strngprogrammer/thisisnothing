@@ -253,7 +253,7 @@ class Report:
         req = requests.post(
             "https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.instagram_bloks_bottom_sheet.ixt.screen.frx_tag_selection_screen/",
             headers=headers,
-            data=data,
+            data=data2,
         )
         reqjs = str(req.json())
         context = re.search(
