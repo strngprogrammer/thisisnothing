@@ -161,7 +161,7 @@ class Report:
 [ 6 ] Impersonation me
 """
         )
-        self.report_type = input(Fore.LIGHTCYAN_EX + "Select a report type > ")
+        self.report_type = int(input(Fore.LIGHTCYAN_EX + "Select a report type > ")
         self.sleep = int(input("Sleep : "))
         self.start_reporting()
 
@@ -193,6 +193,7 @@ class Report:
             "x-instagram-ajax": "1019457192",
             "x-requested-with": "XMLHttpRequest",
             "x-web-session-id": "hderk4:w47t2j:k19uns",
+            "cookie":f"sessionid={self.session}"
         }
         data = {
             "container_module": "profilePage",
